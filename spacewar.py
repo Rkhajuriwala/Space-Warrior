@@ -163,15 +163,15 @@ game = Game()
 game.border()
 game.status()
 #sprite
-player = Player("triangle","white",0,0)
+player = Player("triangle","yellow",0,0)
 #enemy = Enemy("circle","red",-100,0)
-missile = Missile("triangle","yellow",0,0)
+missile = Missile("triangle","white",0,0)
 #friend = Friend("square","blue",0,0)
 enemies=[]
-for i in range(6):
+for i in range(3):
     enemies.append(Enemy("circle","red",-100,0))
 friends = []
-for i in range(6):
+for i in range(3):
     friends.append(Friend("square","blue",100,0))
 #KEYBOARD
 turtle.listen()
