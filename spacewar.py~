@@ -107,11 +107,11 @@ class Missile(Sprite):
         self.goto(-1000,1000)
 
 
-     # def fire(self):
-     #    if self.status == "ready":#self.goto(-1000,1000)
-     #        self.goto(player.xcor(),player.ycor())
-     #        self.setheading(player.heading())
-     #        self.status ="shoot"
+    def fire(self):
+        if self.status == "ready":#self.goto(-1000,1000)
+            self.goto(player.xcor(),player.ycor())
+            self.setheading(player.heading())
+            self.status ="shoot"
 
     def move(self):
 
@@ -165,7 +165,7 @@ game.status()
 #sprite
 player = Player("triangle","yellow",0,0)
 #enemy = Enemy("circle","red",-100,0)
-# missile = Missile("triangle","white",0,0)
+missile = Missile("triangle","white",0,0)
 #friend = Friend("square","blue",0,0)
 enemies=[]
 for i in range(3):
@@ -179,13 +179,13 @@ turtle.onkey(player.move_left,"Left")
 turtle.onkey(player.move_right,"Right")
 turtle.onkey(player.speed_up,"Up")
 turtle.onkey(player.speed_down,"Down")
-# turtle.onkey(missile.fire,"space")
+turtle.onkey(missile.fire,"space")
 while True:
     turtle.update()
     time.sleep(0.02)
     player.move()
     #enemy.move()
-    # missile.move()
+    missile.move()
     #friend.move()
     #player.move_left()
     for enemy in enemies:
@@ -194,24 +194,24 @@ while True:
             x = random.randint(-350,350)
             y = random.randint(-350,350)
             enemy.goto(x,y)
-            game.score +=100
+            game.score -=100
             game.status()
 
-        # if missile.collision(enemy):
-        #     x = random.randint(-350,350)
-        #     y = random.randint(-350,350)
-        #     enemy.goto(x,y)
-        #     missile.status ="ready"
-        #     game.score+=100
-        #     game.status()
+        if missile.collision(enemy):
+            x = random.randint(-350,350)
+            y = random.randint(-350,350)
+            enemy.goto(x,y)
+            missile.status ="ready"
+            game.score+=100
+            game.status()
 
     for friend in friends:
         friend.move()
-        if player.collision(friend):
+        if missile.collision(friend):
             x = random.randint(-350,350)
             y = random.randint(-350,350)
             friend.goto(x,y)
-            # missile.status ="ready"
+            missile.status ="ready"
             game.score-=50
             game.status()
 
@@ -221,4 +221,3 @@ while True:
 
 
 delay = raw_input("press enter")
-
